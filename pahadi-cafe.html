@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pahadi Cafe | Chai, momos and mountain views in Solan</title>
+<meta name="description" content="Pahadi Cafe serves fresh chai, momos and local Himachali food. Order on WhatsApp.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:wght@500;700;800&family=Hind:wght@400;500;600&display=swap" rel="stylesheet">
+<style>
+:root{
+  --pine:#1e3a32; --snow:#f6f8f5; --marigold:#e9a820; --chai:#6b3f26; --ink:#17201d;
+  --line:#d5ddd8; --muted:#51605a;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{font-family:'Hind',sans-serif;font-size:17px;line-height:1.6;color:var(--ink);background:var(--snow);padding-bottom:5rem}
+h1,h2,.logo{font-family:'Bricolage Grotesque',sans-serif;line-height:1.1}
+a{color:inherit}
+:focus-visible{outline:3px solid var(--marigold);outline-offset:3px}
+
+.top{display:flex;justify-content:space-between;align-items:center;padding:1rem 5vw;background:var(--pine);color:var(--snow)}
+.logo{font-size:1.4rem;font-weight:800;text-decoration:none}
+.top nav a{margin-left:1.4rem;text-decoration:none;font-weight:500}
+.top nav a:hover{color:var(--marigold)}
+
+.btn{display:inline-block;background:var(--marigold);color:var(--ink);font-weight:600;padding:.75rem 1.4rem;border-radius:6px;text-decoration:none;border:0;cursor:pointer;font-size:1rem}
+.btn:hover{background:#f2b93c}
+
+.hero{display:grid;grid-template-columns:1.3fr 1fr;gap:3rem;align-items:center;padding:4rem 5vw;background:var(--pine);color:var(--snow)}
+.hero h1{font-size:clamp(2.4rem,6vw,4.6rem);font-weight:800;margin-bottom:1.2rem}
+.hero p{max-width:34rem;margin-bottom:1.6rem;color:#d4e0da}
+.hero-card{background:var(--snow);color:var(--ink);padding:1.8rem;border-radius:10px;border-left:8px solid var(--marigold)}
+.hero-card .tag{color:var(--chai);font-weight:600;margin-bottom:.4rem}
+.hero-card h2{font-size:1.7rem;margin-bottom:.6rem}
+.hero-card p{color:var(--muted);margin-bottom:.8rem}
+.hero-card .price{font-family:'Bricolage Grotesque',sans-serif;font-size:1.6rem;font-weight:700;color:var(--chai);margin:0}
+
+.menu,.visit{padding:4rem 5vw;max-width:70rem;margin:0 auto}
+.menu h2,.visit h2{font-size:2.2rem;font-weight:800;margin-bottom:1.2rem;color:var(--pine)}
+.tabs{display:flex;gap:.6rem;flex-wrap:wrap;margin-bottom:1.6rem}
+.tabs button{font:inherit;font-weight:500;padding:.5rem 1.1rem;border-radius:999px;border:2px solid var(--pine);background:transparent;color:var(--pine);cursor:pointer}
+.tabs button[aria-selected="true"]{background:var(--pine);color:var(--snow)}
+
+.items{list-style:none;display:grid;gap:.2rem}
+.item{display:grid;grid-template-columns:1fr auto auto;gap:1rem;align-items:center;padding:1rem 0;border-bottom:1px solid var(--line)}
+.item h3{font-size:1.1rem;font-weight:600}
+.item p{color:var(--muted);font-size:.95rem}
+.item .p{font-weight:600;color:var(--chai)}
+.qty{display:flex;align-items:center;gap:.5rem}
+.qty button{width:2.2rem;height:2.2rem;border-radius:50%;border:2px solid var(--pine);background:var(--snow);color:var(--pine);font-size:1.2rem;font-weight:600;cursor:pointer;line-height:1}
+.qty button:hover{background:var(--pine);color:var(--snow)}
+.qty span{min-width:1.2rem;text-align:center;font-weight:600}
+
+.visit{display:grid;grid-template-columns:1fr 1.2fr;gap:2.5rem;align-items:start}
+.visit p{margin-bottom:.5rem}
+.link{font-weight:600;color:var(--chai)}
+.map iframe{width:100%;height:280px;border:0;border-radius:10px}
+
+footer{padding:1.5rem 5vw;background:var(--pine);color:#b9c9c1;text-align:center;font-size:.9rem}
+
+.order-bar{position:fixed;left:0;right:0;bottom:0;display:flex;justify-content:space-between;align-items:center;gap:1rem;padding:.8rem 5vw;background:var(--ink);color:var(--snow);z-index:10}
+.order-bar[hidden]{display:none}
+
+@media(max-width:760px){
+  .hero,.visit{grid-template-columns:1fr}
+  .hero{padding:3rem 5vw}
+  .item{grid-template-columns:1fr auto}
+  .item .p{grid-column:1;grid-row:2}
+  .item .qty{grid-column:2;grid-row:1 / span 2}
+}
+@media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+</style>
+</head>
+<body>
+
+<header class="top">
+  <a class="logo" href="#">Pahadi Cafe</a>
+  <nav>
+    <a href="#menu">Menu</a>
+    <a href="#visit">Visit us</a>
+  </nav>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="hero-text">
+      <h1>Chai that tastes like the mountains.</h1>
+      <p>Fresh momos, hot chai and Himachali plates, made every morning. Pick your food below and send the order straight to our WhatsApp.</p>
+      <a class="btn" href="#menu">Choose your food</a>
+    </div>
+    <div class="hero-card" aria-label="Today's special">
+      <p class="tag">Today's special</p>
+      <h2>Siddu with ghee</h2>
+      <p>Steamed wheat bread stuffed with walnuts, served hot with desi ghee and mint chutney.</p>
+      <p class="price">₹90</p>
+    </div>
+  </section>
+
+  <section id="menu" class="menu">
+    <h2>Menu</h2>
+    <div class="tabs" role="tablist" id="tabs"></div>
+    <ul class="items" id="items"></ul>
+  </section>
+
+  <section id="visit" class="visit">
+    <div>
+      <h2>Visit us</h2>
+      <p>Mall Road, Solan, Himachal Pradesh</p>
+      <p>Open every day, 8:00 AM to 9:30 PM</p>
+      <p><a class="link" href="tel:+919999999999">Call +91 99999 99999</a></p>
+    </div>
+    <div class="map">
+      <!-- Replace the src below with the Google Maps embed link of the real cafe -->
+      <iframe title="Cafe location" loading="lazy" src="https://www.google.com/maps?q=Solan,Himachal+Pradesh&output=embed"></iframe>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <p>© 2026 Pahadi Cafe. This is a demo website.</p>
+</footer>
+
+<!-- Order bar: appears after the customer adds items -->
+<div class="order-bar" id="orderBar" hidden>
+  <p><span id="count">0</span> items, <strong id="total">₹0</strong></p>
+  <a class="btn" id="waBtn" href="#" target="_blank" rel="noopener">Order on WhatsApp</a>
+</div>
+
+<script>
+// ====== Edit these two values for each client ======
+const WHATSAPP_NUMBER = "919999999999"; // country code + number, no + or spaces
+const CAFE_NAME = "Pahadi Cafe";
+
+// ====== Menu data: change items, prices and categories here ======
+const MENU = {
+  "Chai and coffee": [
+    { name: "Masala chai", desc: "Ginger, cardamom and fresh milk", price: 30 },
+    { name: "Kangra tea", desc: "Light, local green tea", price: 40 },
+    { name: "Cold coffee", desc: "Thick and chilled", price: 90 }
+  ],
+  "Momos": [
+    { name: "Veg momos (8 pcs)", desc: "Steamed, with spicy red chutney", price: 80 },
+    { name: "Paneer momos (8 pcs)", desc: "Soft paneer filling", price: 110 },
+    { name: "Fried momos (8 pcs)", desc: "Crispy outside, juicy inside", price: 100 }
+  ],
+  "Himachali plates": [
+    { name: "Siddu with ghee", desc: "Walnut-stuffed steamed bread", price: 90 },
+    { name: "Rajma madra", desc: "Kidney beans in yogurt gravy, with rice", price: 150 },
+    { name: "Babru (2 pcs)", desc: "Fried black gram stuffed bread", price: 70 }
+  ]
+};
+
+const tabsEl = document.getElementById("tabs");
+const itemsEl = document.getElementById("items");
+const bar = document.getElementById("orderBar");
+const countEl = document.getElementById("count");
+const totalEl = document.getElementById("total");
+const waBtn = document.getElementById("waBtn");
+
+const cart = {}; // item name -> { price, qty }
+let current = Object.keys(MENU)[0];
+
+function renderTabs() {
+  tabsEl.innerHTML = "";
+  Object.keys(MENU).forEach(cat => {
+    const b = document.createElement("button");
+    b.textContent = cat;
+    b.setAttribute("role", "tab");
+    b.setAttribute("aria-selected", cat === current);
+    b.addEventListener("click", () => { current = cat; renderTabs(); renderItems(); });
+    tabsEl.appendChild(b);
+  });
+}
+
+function renderItems() {
+  itemsEl.innerHTML = "";
+  MENU[current].forEach(it => {
+    const qty = cart[it.name] ? cart[it.name].qty : 0;
+    const li = document.createElement("li");
+    li.className = "item";
+    li.innerHTML = `
+      <div><h3>${it.name}</h3><p>${it.desc}</p></div>
+      <span class="p">₹${it.price}</span>
+      <div class="qty">
+        <button aria-label="Remove one ${it.name}">−</button>
+        <span>${qty}</span>
+        <button aria-label="Add one ${it.name}">+</button>
+      </div>`;
+    const [minus, plus] = li.querySelectorAll("button");
+    minus.addEventListener("click", () => change(it, -1));
+    plus.addEventListener("click", () => change(it, 1));
+    itemsEl.appendChild(li);
+  });
+}
+
+function change(it, delta) {
+  const row = cart[it.name] || { price: it.price, qty: 0 };
+  row.qty = Math.max(0, row.qty + delta);
+  if (row.qty === 0) delete cart[it.name]; else cart[it.name] = row;
+  renderItems();
+  updateBar();
+}
+
+function updateBar() {
+  const names = Object.keys(cart);
+  const count = names.reduce((s, n) => s + cart[n].qty, 0);
+  const total = names.reduce((s, n) => s + cart[n].qty * cart[n].price, 0);
+  bar.hidden = count === 0;
+  countEl.textContent = count;
+  totalEl.textContent = "₹" + total;
+
+  const lines = names.map(n => `${cart[n].qty} x ${n} (₹${cart[n].qty * cart[n].price})`);
+  const msg = `Hello ${CAFE_NAME}, I want to order:\n${lines.join("\n")}\nTotal: ₹${total}`;
+  waBtn.href = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(msg)}`;
+}
+
+renderTabs();
+renderItems();
+</script>
+</body>
+</html>
